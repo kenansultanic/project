@@ -140,7 +140,8 @@ def search_destinations(request):
 
 
 location_id = Parameter('location_id', IN_QUERY, description='Selected location ID', type=TYPE_INTEGER, required=True)
-max_distance = Parameter('distance', IN_QUERY, description='Maximum distance from location', type=TYPE_NUMBER, required=True)
+max_distance = Parameter('distance', IN_QUERY, description='Maximum distance from location', type=TYPE_NUMBER,
+                         required=True)
 search_categories = Parameter(
     'categories',
     IN_QUERY,
@@ -171,8 +172,16 @@ def find_closest_destinations(request):
     try:
         selected_location = Location.objects.get(pk=selected_location_id)
 
-        destinations = Destination.objects.filter(Q(categories__name__in=categories))
+        destinations = []
 
+        if categories:
+            print(categories)
+            destinations = Destination.objects.filter(Q(categories__name__in=categories))
+            print(destinations)
+        else:
+            print(2)
+            destinations = Destination.objects.all()
+        print(3)
         closest_destinations = filter(lambda dest: geodesic(
             (selected_location.latitude, selected_location.longitude),
             (dest.location.latitude, dest.location.longitude)
@@ -193,3 +202,15 @@ def find_closest_destinations(request):
 
     except Exception as e:
         return Response({'error': str(e)}, status=500)
+
+
+@api_view(['GET'])
+def random_destinations(request, number_of_destinations):
+    """
+        Returns a specified number of destinations randomly
+    """
+    destinations = Destination.objects.order_by('?')[:number_of_destinations]
+
+    serialized_destinations = [destination.to_dict(request) for destination in destinations]
+
+    return Response(serialized_destinations)
