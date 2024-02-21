@@ -104,11 +104,11 @@ MEDIA_URL = '/images/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'railway',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD': '0FD4Hd0Y5mZNtRL9SeQJ',
-        'HOST': 'containers-us-west-210.railway.app',
-        'PORT': '6381',
+        'PASSWORD': 'e-3*GDG21a6BgE3C2-*-CcAg3a*c11-g',
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '19515',
     }
 }
 
@@ -144,13 +144,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, images)
-STATIC_URL = '/staticfiles/'
+STATIC_URL = 'staticfiles/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'staticfiles'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'staticfiles')
+MEDIA_URLS = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Additional directories where static files are located
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
 
 # Directory where collected static files will be stored
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
