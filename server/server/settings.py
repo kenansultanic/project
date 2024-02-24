@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'coreapi',
     'drf_yasg',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +150,7 @@ STATIC_URL = 'staticfiles/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'staticfiles'),)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'staticfiles')
 MEDIA_URLS = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Additional directories where static files are located
@@ -160,3 +163,8 @@ MEDIA_URLS = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dwhynx6j5',
+    'API_KEY': '184424425752741',
+    'API_SECRET': 'Xvc4KmUQpuJQXJEg5UlRUZWu2CE',
+}
