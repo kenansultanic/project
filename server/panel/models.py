@@ -57,7 +57,7 @@ class Location(models.Model):
 
 
 class Image(models.Model):
-    image = CloudinaryField('images')
+    image = models.ImageField(upload_to='images/')
 
     def to_dict(self,request):
         serialized_image = {

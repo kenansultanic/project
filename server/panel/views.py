@@ -18,17 +18,13 @@ from .schemas import get_destination_schema, search_for_destinations_schema, get
 from dotenv import load_dotenv
 load_dotenv()
 
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
-import json
 
 load_dotenv()
 
 WEATHER_API_KEY = os.getenv('OPENWEATHERMAP_API_KEY')
 
-config = cloudinary.config(secure=True)
+
 
 
 @swagger_auto_schema(method='get', responses={200: get_locations_categories_schema})
@@ -231,10 +227,5 @@ def random_destinations(request, number_of_destinations):
 
     return Response(serialized_destinations)
 
-#def uploadImage():
 
-  #cloudinary.uploader.upload("https://cloudinary-devs.github.io/cld-docs-assets/assets/images/butterfly.jpeg", public_id="quickstart_butterfly", unique_filename = False, overwrite=True)
-
-  # Build the URL for the image and save it in the variable 'srcURL'
-  #srcURL = cloudinary.CloudinaryImage("quickstart_butterfly").build_url()
 
